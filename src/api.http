@@ -1,0 +1,18 @@
+## fasf
+POST https://panfilo-blog-backend.onrender.com/signup
+
+{
+    "name":"Erikita ♡",
+    "email":"panfilo@gmail.com",
+    "password":"Tamaki_223"
+}
+
+
+##
+
+POST https://panfilo-blog-backend.onrender.com/login
+
+{
+    "email":    "panfilo@gmail.com",
+    "password":"Tamaki_223"
+}
