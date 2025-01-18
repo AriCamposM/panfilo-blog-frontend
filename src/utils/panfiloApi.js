@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://panfilo-blog-backend.onrender.com'
+export const BASE_URL = 'https://api.panfile-blog.realdeeptech.com'
 
 export const signup = (name, email, password) => {
     return fetch(`${BASE_URL}/signup`,{

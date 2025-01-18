@@ -101,6 +101,7 @@ function App() {
     setIsLoggedIn(false);
     setIsAuthModalOpen(false)
     localStorage.removeItem("jwtPanfilo");
+    setIsAdminTrue(false)
     setLogOff(true);
     setTimeout(() => setLogOff(false), 3000);
   }
@@ -151,7 +152,6 @@ function App() {
       setIsLoggedIn(true)
       if(data.isAdmin){
         setIsAdminTrue(true);
-        setTimeout(() => setIsAdminTrue(false), 3000);
       }
 
       setLoginSuccess(true);
@@ -167,15 +167,23 @@ function App() {
 
   //Logic For Posting Photos
   const handlePostForm = (title, description, image) => {
-    panfiloApi.createPost(title , description , image)
-    .then((post)=>{
-      console.log(post);
-      setPostCards([post , ...postCards])
+  panfiloApi.createPost(title, description, image)
+    .then((post) => {
+      const date = new Date(post.date);
+      const formattedDate = format(date, 'd MMMM yyyy', { locale: es });
+      const dateWithDe = formattedDate.replace(' ', ' de ');
+
+      const postWithFormattedDate = {
+        ...post,
+        date: dateWithDe,
+      };
+
+      setPostCards([postWithFormattedDate, ...postCards]);
     })
-    .catch((err) =>{
+    .catch((err) => {
       console.log(err);
-    })
-  }
+    });
+};
   
   //Logic For Deleting Post 
   const handleDeletePost = () => {
